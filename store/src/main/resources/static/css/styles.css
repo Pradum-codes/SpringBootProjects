@@ -1,0 +1,82 @@
+:root{
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --accent: #0f62fe;
+  --muted: #6b7280;
+  --danger: #ef4444;
+  --radius: 12px;
+  --gap: 16px;
+  --maxw: 880px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg,#f6f8fa 0%,#eef2f7 100%);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.container{
+  max-width:var(--maxw);
+  margin:28px auto;
+  padding:18px;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:var(--gap);
+}
+.header h1{ margin:0; font-size:1.4rem; color:var(--accent) }
+.header nav a{
+  margin-left:12px; text-decoration:none; color:var(--muted); font-weight:600;
+}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:0 8px 24px rgba(16,24,40,0.06);
+}
+
+.form label{ display:block; margin-top:12px; color:var(--muted); font-size:0.9rem; }
+.form input[type="text"],
+.form input[type="number"]{
+  width:100%;
+  padding:10px 12px;
+  margin-top:6px;
+  border:1px solid #e6e9ef;
+  border-radius:8px;
+  font-size:1rem;
+}
+
+.form-actions{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+.btn{
+  padding:8px 14px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-block;
+}
+.btn.primary{ background:var(--accent); color:#fff; }
+.btn.ghost{ background:transparent; color:var(--accent); border:1px solid #e6e9ef; }
+.btn.danger{ background:var(--danger); color:#fff; border:0; }
+
+.table{ width:100%; border-collapse:collapse; margin-top:12px; }
+.table thead th{ text-align:left; padding:10px 6px; color:var(--muted); font-size:0.9rem; border-bottom:1px solid #eef2f7; }
+.table tbody td{ padding:12px 6px; border-bottom:1px dashed #f1f5f9; }
+.table tbody tr:hover{ background:#fbfdff; }
+
+.empty{ color:var(--muted); padding:18px 6px; }
+
+.footer{ margin-top:14px; color:var(--muted); font-size:0.9rem; text-align:center; }

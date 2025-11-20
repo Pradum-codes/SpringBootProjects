@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Products — Store</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Store</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/add}">Add Product</a>
+        </nav>
+    </header>
+
+    <main class="card">
+        <h2>Products</h2>
+
+        <div th:if="${#lists.isEmpty(products)}" class="empty">
+            No products yet. <a th:href="@{/add}">Add one</a>.
+        </div>
+
+        <table th:if="${!#lists.isEmpty(products)}" class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price (INR)</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${products}">
+                <td th:text="${p.id}">1</td>
+                <td th:text="${p.name}">Sample</td>
+                <td th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 2, 'POINT')}">0.00</td>
+                <td class="actions">
+                    <!-- delete via small POST form (CSRF not enabled unless you add Spring Security) -->
+                    <form th:action="@{/products/delete}" method="post" th:object="${p}" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${p.id}" />
+                        <button type="submit" class="btn danger" onclick="return confirm('Delete this product?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="footer">
+        <small>Showing <span th:text="${products.size()}">0</span> products</small>
+    </footer>
+</div>
+</body>
+</html>

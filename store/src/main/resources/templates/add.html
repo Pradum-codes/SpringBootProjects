@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Add Product — Store</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Store</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/products}">Products</a>
+        </nav>
+    </header>
+
+    <main class="card">
+        <h2>Add Product</h2>
+
+        <form th:action="@{/add}" method="post" class="form">
+            <label for="name">Product name</label>
+            <input id="name" name="name" type="text" required placeholder="e.g. Wireless Mouse" />
+
+            <label for="price">Price (INR)</label>
+            <input id="price" name="price" type="number" required step="0.01" min="0" placeholder="e.g. 1499.00" />
+
+            <div class="form-actions">
+                <button type="submit" class="btn primary">Add Product</button>
+                <a th:href="@{/products}" class="btn ghost">View Products</a>
+            </div>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <small>Simple Store • Built with Spring Boot & Thymeleaf</small>
+    </footer>
+</div>
+</body>
+</html>

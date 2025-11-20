@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Store — Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Store</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/products}">Products</a>
+            <a th:href="@{/add}">Add Product</a>
+        </nav>
+    </header>
+
+    <main class="card hero">
+        <h2>Welcome to the Store</h2>
+        <p class="empty">A tiny demo application built with Spring Boot & Thymeleaf — manage products quickly and simply.</p>
+
+        <div class="hero-ctas">
+            <a th:href="@{/products}" class="btn primary">View Products</a>
+            <a th:href="@{/add}" class="btn ghost">Add Product</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <small>Simple Store • Built with Spring Boot & Thymeleaf</small>
+    </footer>
+</div>
+</body>
+</html>
