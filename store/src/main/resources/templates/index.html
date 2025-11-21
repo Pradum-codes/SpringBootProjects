@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Store — Home</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts + Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
+
 </head>
 <body>
+
 <div class="container">
     <header class="header">
         <h1>Store</h1>
@@ -19,17 +24,24 @@
 
     <main class="card hero">
         <h2>Welcome to the Store</h2>
-        <p class="empty">A tiny demo application built with Spring Boot & Thymeleaf — manage products quickly and simply.</p>
+        <p>
+            A tiny demo application built with Spring Boot &amp; Thymeleaf — manage products quickly and simply.
+        </p>
 
         <div class="hero-ctas">
-            <a th:href="@{/products}" class="btn primary">View Products</a>
-            <a th:href="@{/add}" class="btn ghost">Add Product</a>
+            <a th:href="@{/products}" class="btn primary">
+                <i class="fas fa-th-list"></i> View Products
+            </a>
+            <a th:href="@{/add}" class="btn ghost">
+                <i class="fas fa-plus-circle"></i> Add Product
+            </a>
         </div>
     </main>
 
     <footer class="footer">
-        <small>Simple Store • Built with Spring Boot & Thymeleaf</small>
+        <small>Simple Store • Built with Spring Boot &amp; Thymeleaf</small>
     </footer>
 </div>
+
 </body>
 </html>

@@ -1,12 +1,16 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <title>Products — Store</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
+
 <div class="container">
     <header class="header">
         <h1>Store</h1>
@@ -17,41 +21,61 @@
     </header>
 
     <main class="card">
-        <h2>Products</h2>
-
-        <div th:if="${#lists.isEmpty(products)}" class="empty">
-            No products yet. <a th:href="@{/add}">Add one</a>.
+        <div class="row-between">
+            <h2><i class="fas fa-boxes-stacked"></i> Products</h2>
+            <div class="muted">Showing <strong th:text="${products.size()}">0</strong> items</div>
         </div>
 
-        <table th:if="${!#lists.isEmpty(products)}" class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price (INR)</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="p : ${products}">
-                <td th:text="${p.id}">1</td>
-                <td th:text="${p.name}">Sample</td>
-                <td th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 2, 'POINT')}">0.00</td>
-                <td class="actions">
-                    <!-- delete via small POST form (CSRF not enabled unless you add Spring Security) -->
-                    <form th:action="@{/products/delete}" method="post" th:object="${p}" style="display:inline;">
-                        <input type="hidden" name="id" th:value="${p.id}" />
-                        <button type="submit" class="btn danger" onclick="return confirm('Delete this product?');">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <!-- Empty State -->
+        <div th:if="${#lists.isEmpty(products)}" class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>No products added yet.</p>
+            <p>Start by <a th:href="@{/add}">adding your first product</a>!</p>
+        </div>
+
+        <!-- Products Table -->
+        <div th:if="${!#lists.isEmpty(products)}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price (₹)</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${products}">
+                    <td data-label="ID" th:text="${p.id}">1</td>
+                    <td data-label="Name">
+                        <div class="name-cell">
+                            <span class="product-name" th:text="${p.name}">Wireless Mouse</span>
+                            <a th:href="@{/products/{id}/edit(id=${p.id})}" class="link-muted">Edit details →</a>
+                        </div>
+                    </td>
+                    <td data-label="Price" th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 2, 'POINT')}">1,499.00</td>
+                    <td class="actions" data-label="Actions">
+                        <a th:href="@{/products/{id}/edit(id=${p.id})}" class="btn primary small">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form th:action="@{/products/delete}" method="post" style="display:inline;">
+                            <input type="hidden" name="id" th:value="${p.id}" />
+                            <button type="submit" class="btn danger small"
+                                    onclick="return confirm('Permanently delete this product?');">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 
     <footer class="footer">
-        <small>Showing <span th:text="${products.size()}">0</span> products</small>
+        <small>Simple Store • Built with Spring Boot &amp; Thymeleaf</small>
     </footer>
 </div>
+
 </body>
 </html>
